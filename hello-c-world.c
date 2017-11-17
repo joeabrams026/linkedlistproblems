@@ -62,6 +62,22 @@ int GetNth (struct node *head, int nth) {
     // assert(0);
 }
 
+/**
+ * 3. GetNth
+ **/
+void DeleteList (struct node **headRef) {
+    struct node *head = *headRef;
+    
+    while (head != NULL) {
+        struct node *last = head;
+        head = head->next;
+        
+        free(last);
+    }
+    
+    *headRef = NULL;
+}
+
 
 main() {
     struct node* head = BuildOneTwoThree();
@@ -72,6 +88,11 @@ main() {
     
     printf("2: GetNth\n");
     printf("\tGetNth of  of '2' in OneTwoThree: %d\n", GetNth(BuildOneTwoThree(),2));
+    
+    printf("3: Delete List\n");
+    struct node* toDelete = BuildOneTwoThree();
+    DeleteList(&toDelete);
+    printf("\tdeleted list");
     
     return 0;
 }
