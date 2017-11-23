@@ -78,6 +78,22 @@ void DeleteList (struct node **headRef) {
     *headRef = NULL;
 }
 
+/**
+ * 3. GetNth
+ **/
+int Pop (struct node **headRef) {
+    struct node *head = *headRef;
+
+    //assert (head != NULL)
+    
+    int data = head->data;
+    struct node *old = head;
+    *headRef = head->next;
+    free(old);
+    
+    return data;
+}
+
 
 main() {
     struct node* head = BuildOneTwoThree();
@@ -92,7 +108,13 @@ main() {
     printf("3: Delete List\n");
     struct node* toDelete = BuildOneTwoThree();
     DeleteList(&toDelete);
-    printf("\tdeleted list");
+    printf("\tdeleted list\n");
+    
+    printf("4: Pop\n");
+    struct node* toPop = BuildOneTwoThree();
+    printf("Pop(): 1=%d?\n", Pop(&toPop));
+    printf("Pop(): 2=%d?\n", Pop(&toPop));
+    printf("Pop(): 3=%d?\n", Pop(&toPop));
     
     return 0;
 }
